@@ -17,9 +17,7 @@ class ImageService {
       images
     Where
       id = :id`;
-    const replacements = {
-      id,
-    };
+    const replacements = { id };
     const [image] = await sequelize.query(query,
       {
         replacements,

@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
-import env from '../../config/env';
 import _ from 'lodash';
+import env from '../../config/env';
 
 export async function up(queryInterface) {
   const { database } = queryInterface.sequelize.config;

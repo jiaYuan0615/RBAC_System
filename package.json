@@ -4,7 +4,7 @@
   "main": "app.js",
   "scripts": {
     "start": "nodemon --exec npx babel-node src/app.js",
-    "test": "mocha",
+    "test": "mocha --require @babel/polyfill --require @babel/register './test/**/*.spec.js'",
     "build": "npx babel src --out-dir es5",
     "db:create": "npx sequelize db:create",
     "db:migrate": "npx sequelize db:migrate",
@@ -16,6 +16,7 @@
   "license": "ISC",
   "description": "RBAC_System",
   "dependencies": {
+    "@babel/polyfill": "^7.12.1",
     "bcrypt": "5.0.0",
     "cls-hooked": "^4.2.2",
     "compression": "^1.7.4",
@@ -61,6 +62,7 @@
     "eslint-plugin-import": "2.22.0",
     "mocha": "^8.3.2",
     "nodemon": "~2.0.4",
-    "sequelize-cli": "^6.4.1"
+    "sequelize-cli": "^6.4.1",
+    "supertest": "^6.2.2"
   }
 }

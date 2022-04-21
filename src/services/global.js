@@ -48,6 +48,22 @@ class GlobalService {
     return random;
   };
 
+  /** 產生要更新的內容
+   *
+   * @param {Array} prev
+   * @param {Array} next
+   * @param {Object}
+   */
+  yieldUpdateItems = (prev, next) => {
+    const data = {};
+    const preserveItem = _.intersection(prev, next);
+    if (preserveItem.length) {
+      data.insertItem = _.xor(preserveItem, next);
+      data.destroyItem = _.xor(preserveItem, prev);
+    }
+    return data;
+  }
+
   /**
    *
    * @param {string} folder
