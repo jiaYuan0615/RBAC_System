@@ -1,8 +1,6 @@
 /* eslint-disable no-undef */
-import supertest from 'supertest';
 import { v4 as uuidv4 } from 'uuid';
-
-const api = supertest('http://localhost:3000/api');
+import api from '../config';
 
 const randomId = uuidv4();
 
