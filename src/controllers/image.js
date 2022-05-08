@@ -2,6 +2,7 @@
 import fs from 'fs';
 import paths from 'path';
 import ImageService from '../services/image';
+import GlobalService from '../services/global';
 import config from '../config';
 
 const notFoundImage = paths.resolve(__dirname, '../../storage/404.png');
@@ -14,6 +15,7 @@ class ImageController {
       if (!fs.existsSync(path)) throw new Error('找不到圖片');
       res.status(200).sendFile(path);
     } catch (error) {
+      GlobalService.yieldLogFile(error);
       res.status(200).sendFile(notFoundImage);
     }
   }

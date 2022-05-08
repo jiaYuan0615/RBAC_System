@@ -3,6 +3,7 @@
 /* eslint-disable global-require */
 import randomstring from 'randomstring';
 import fs from 'fs';
+import moment from 'moment';
 import path from 'path';
 import _ from 'lodash';
 
@@ -95,6 +96,24 @@ class GlobalService {
       }));
     }
     return payload;
+  }
+
+  /** 紀錄 Log 訊息
+   *
+   * @param {string} message
+   * @returns {void}
+   */
+  yieldLogFile = (message) => {
+    const fileName = `${moment().format('yyyy-MM-DD')}.txt`;
+    const basePath = path.resolve(__dirname, '../../log');
+    const targetPath = path.resolve(basePath, fileName);
+    const content = `${moment().format('yyyy-MM-DD hh:mm:ss')} ： ${message}`;
+    if (!fs.existsSync(basePath)) fs.mkdirSync(basePath);
+    if (!fs.existsSync(targetPath)) {
+      fs.writeFileSync(targetPath, `${content}\n`);
+    } else {
+      fs.appendFileSync(targetPath, `${content}\n`);
+    }
   }
 }
 
